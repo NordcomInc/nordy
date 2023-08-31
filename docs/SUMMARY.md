@@ -1,3 +1,4 @@
 # Table of contents
 
--   [About `nordy`](../README.md)
+-   [about nordy](../README.md)
+-   [nordcom.io](https://nordcom.io/)

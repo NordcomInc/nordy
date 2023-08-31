@@ -1,7 +1,7 @@
 {
     "name": "@nordcom/nordy",
     "version": "0.1.0",
-    "description": "",
+    "description": "Add source-control to your Discord server",
     "prettier": "@nordcom/prettier",
     "main": "./build/index.js",
     "type": "module",
