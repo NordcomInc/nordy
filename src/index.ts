@@ -1,9 +1,9 @@
 import 'dotenv/config';
 
 import Logger from '@/utils/logger';
-import Nordy from './bot';
+import Nordy from './nordy';
 
-const nordy = new Nordy({ logger: Logger.child({ name: 'Nordy' }) });
+const nordy = new Nordy({ logger: Logger.getSubLogger({ name: Nordy.name }) });
 
 await nordy.initializeHandlers();
 await nordy.login();

@@ -7,7 +7,7 @@
         "standard/computed-property-even-spacing": 0,
         "import/first": 0,
         "no-unused-vars": "error",
-        "no-console": ["error", { "allow": ["warn", "error"] }],
+        "no-console": "error",
         "indent": "off",
         "semi": ["error", "always"],
         "brace-style": [

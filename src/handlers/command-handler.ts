@@ -2,13 +2,13 @@ import * as Commands from '../commands/index';
 
 import type { HandlerConstructorProps, HandlerHandleProps, HandlerRegisterProps } from './handler';
 
-import { Command } from '../commands/command';
-import { Handler } from './handler';
+import { Command } from '@/commands/command';
+import { Handler } from '@/handlers/handler';
 import { InteractionType } from 'discord.js';
-import type { Logger } from 'pino';
+import type { Logger } from 'tslog';
 
 export class CommandHandler extends Handler {
-    private readonly logger: Logger;
+    private readonly logger: Logger<any>;
     private readonly commands: Map<string[], Command>;
 
     private getKeyFromCommandName(commandName: string): string[] {
@@ -25,12 +25,13 @@ export class CommandHandler extends Handler {
 
     constructor({ logger }: HandlerConstructorProps) {
         super({ logger });
-
         this.logger = logger;
+
+        this.logger.trace(`Initializing CommandHander...`);
 
         this.commands = new Map(
             Object.values(Commands)
-                .map((Command) => new Command())
+                .map((Command) => new Command({ logger: this.logger.getSubLogger({ name: Command.name }) }))
                 .filter((command) => command.enabled())
                 .map((command) => {
                     const data = command.data();

@@ -1,10 +1,21 @@
 import { SlashCommandBuilder } from 'discord.js';
-import { Command } from './command';
-import type { CommandHandleCommandProps } from './command';
+import { Command } from '@/commands/command';
+import type { CommandConstructorProps, CommandHandleCommandProps } from '@/commands/command';
+import { PRODUCTION } from '@/utils/config';
+import type { Logger } from 'tslog';
 
 export class DebugCommand extends Command {
+    private readonly logger: Logger<any>;
+
+    constructor({ logger }: CommandConstructorProps) {
+        super({ logger });
+        this.logger = logger;
+
+        this.logger.trace(`Initializing DebugCommand...`);
+    }
+
     override enabled() {
-        return process.env.NODE_ENV !== 'production';
+        return !PRODUCTION;
     }
 
     override data() {

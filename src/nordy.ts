@@ -5,7 +5,7 @@ import Discord, { ActivityType, Client, Events, GatewayIntentBits, Partials } fr
 import { DISCORD_TOKEN } from '@/utils/config';
 import type { Interaction } from 'discord.js';
 import type { Handler } from '@/handlers/handler';
-import type { Logger } from 'pino';
+import type { Logger } from 'tslog';
 
 const client = new Discord.Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
@@ -15,10 +15,10 @@ const client = new Discord.Client({
 client.login(DISCORD_TOKEN);
 
 export default class Nordy extends Client {
-    private readonly logger: Logger;
+    private readonly logger: Logger<any>;
     private handlers: Handler[] = [];
 
-    constructor({ logger }: { logger: Logger }) {
+    constructor({ logger }: { logger: Logger<any> }) {
         super({
             intents: [
                 GatewayIntentBits.Guilds,
@@ -80,7 +80,7 @@ export default class Nordy extends Client {
 
     public async initializeHandlers() {
         this.handlers = Object.values(Handlers).map(
-            (Handler) => new Handler({ logger: this.logger.child({ name: Handler.name }) })
+            (Handler) => new Handler({ logger: this.logger.getSubLogger({ name: Handler.name }) })
         );
         this.logger.trace(`Initialized ${this.handlers.length} handler(s)`);
     }
@@ -88,5 +88,9 @@ export default class Nordy extends Client {
     public override async login(): Promise<string> {
         super.login(DISCORD_TOKEN);
         return ''; // We don't want to return the token.
+    }
+
+    public getHandlers(): Handler[] {
+        return this.handlers;
     }
 }

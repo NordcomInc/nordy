@@ -1,8 +1,18 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { Command } from './command';
-import type { CommandHandleCommandProps } from './command';
+import type { CommandConstructorProps, CommandHandleCommandProps } from './command';
+import type { Logger } from 'tslog';
 
 export class AboutCommand extends Command {
+    private readonly logger: Logger<any>;
+
+    constructor({ logger }: CommandConstructorProps) {
+        super({ logger });
+        this.logger = logger;
+
+        this.logger.trace(`Initializing AboutCommand...`);
+    }
+
     override enabled() {
         return true;
     }

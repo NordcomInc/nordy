@@ -1,8 +1,8 @@
 import type { Client, Interaction } from 'discord.js';
 
-import type { Logger } from 'pino';
+import type { Logger } from 'tslog';
 
-export type HandlerConstructorProps = { logger: Logger };
+export type HandlerConstructorProps = { logger: Logger<any> };
 export type HandlerRegisterProps = { client: Client };
 export type HandlerHandleProps = { interaction: Interaction };
 
