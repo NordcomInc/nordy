@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import Dashboard from './admin';
+import API from './api';
 import { HTTP_PORT } from './utils/config';
 import Logger from '@/utils/logger';
 import Nordy from './nordy';
@@ -8,7 +8,7 @@ import Nordy from './nordy';
 const nordy = new Nordy({ logger: Logger.getSubLogger({ name: Nordy.name }) });
 await nordy.initializeHandlers();
 
-const dashboard = new Dashboard({ logger: Logger.getSubLogger({ name: Dashboard.name }), nordy });
+const dashboard = new API({ logger: Logger.getSubLogger({ name: API.name }), nordy });
 await dashboard.start({ port: HTTP_PORT });
 
 await nordy.login();
