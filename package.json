@@ -13,7 +13,7 @@
         "prepare": "husky install",
         "start": "node --experimental-loader=extensionless build/index.js",
         "dev": "tsc-watch --noClear --onSuccess \"npm run postbuild && npm run start\"",
-        "build": "tsc --build --clean && tsc-alias",
+        "build": "tsc --build --clean",
         "postbuild": "tsc-alias",
         "lint": "npm-run-all --parallel lint:*",
         "lint:prettier": "prettier src/**/*.* --check",
