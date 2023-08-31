@@ -1,6 +1,8 @@
 import { LOG_LEVEL } from './config';
 import { pino } from 'pino';
 
-export default pino({
+const Logger = pino({
     level: LOG_LEVEL
 });
+
+export default Logger;

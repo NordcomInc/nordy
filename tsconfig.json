@@ -16,9 +16,15 @@
         "downlevelIteration": true,
         "strictNullChecks": true,
         "outDir": "./build",
-        "baseUrl": "./src",
-        "rootDir": "./src",
-        "paths": {}
+        "rootDir": "./src/",
+        "baseUrl": ".",
+        "paths": {
+            "@/utils/*": ["src/utils/*"],
+            "@/handlers/*": ["src/handlers/*"],
+            "@/handlers": ["src/handlers/index"],
+            "@/commands/*": ["src/commands/*"],
+            "@/commands": ["src/commands/index"]
+        }
     },
     "exclude": ["node_modules"],
     "include": ["./src/**/*.ts"]

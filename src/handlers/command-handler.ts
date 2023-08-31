@@ -1,13 +1,14 @@
 import * as Commands from '../commands/index';
 
-import type { HandlerHandleProps, HandlerRegisterProps } from './handler';
+import type { HandlerConstructorProps, HandlerHandleProps, HandlerRegisterProps } from './handler';
 
 import { Command } from '../commands/command';
 import { Handler } from './handler';
 import { InteractionType } from 'discord.js';
-import logger from '../utils/logger';
+import type { Logger } from 'pino';
 
 export class CommandHandler extends Handler {
+    private readonly logger: Logger;
     private readonly commands: Map<string[], Command>;
 
     private getKeyFromCommandName(commandName: string): string[] {
@@ -22,8 +23,10 @@ export class CommandHandler extends Handler {
         throw new Error('Command not found');
     }
 
-    constructor() {
-        super();
+    constructor({ logger }: HandlerConstructorProps) {
+        super({ logger });
+
+        this.logger = logger;
 
         this.commands = new Map(
             Object.values(Commands)
@@ -41,11 +44,14 @@ export class CommandHandler extends Handler {
                 })
         );
 
-        logger.debug(`Registered ${this.commands.size} command(s)`);
+        this.logger.debug(`Registered ${this.commands.size} command(s)`);
     }
 
     async register({ client }: HandlerRegisterProps): Promise<void> {
-        if (!client.application) throw new Error('Client application is not available');
+        if (!client.application) {
+            this.logger.warn('Client application is not available');
+            return;
+        }
 
         await client.application.commands.set(
             Array.from(this.commands.values())
@@ -55,7 +61,7 @@ export class CommandHandler extends Handler {
     }
 
     async handle({ interaction }: HandlerHandleProps): Promise<void> {
-        logger.trace(
+        this.logger.trace(
             `Handling interaction of type "${InteractionType[interaction.type]}" from "@${interaction.user.tag}"`
         );
 
@@ -64,7 +70,7 @@ export class CommandHandler extends Handler {
                 await this.commands.get(this.getKeyFromCommandName(interaction.commandName))!.handle({ interaction });
                 break;
             default:
-                logger.debug(`Unhandled interaction type: ${interaction.type}`);
+                this.logger.debug(`Unhandled interaction type: ${interaction.type}`);
                 break;
         }
     }
