@@ -2,15 +2,16 @@ import * as Commands from '../commands/index';
 
 import type { HandlerHandleProps, HandlerRegisterProps } from './handler';
 
-import { Command } from 'src/commands/command';
+import { Command } from '../commands/command';
 import { Handler } from './handler';
 import { InteractionType } from 'discord.js';
+import logger from '../utils/logger';
 
 export class CommandHandler extends Handler {
     private readonly commands: Map<string[], Command>;
 
     private getKeyFromCommandName(commandName: string): string[] {
-        for (const [names, command] of this.commands.entries()) {
+        for (const [names] of this.commands.entries()) {
             for (const name of names) {
                 if (name.toLowerCase() !== commandName.toLowerCase()) continue;
 
@@ -30,10 +31,17 @@ export class CommandHandler extends Handler {
                 .filter((command) => command.enabled())
                 .map((command) => {
                     const data = command.data();
+                    const variants = data.map((variant) => variant.name);
 
-                    return [data.map((entry) => entry.name), command];
+                    logger.trace(
+                        `Registering command "${command.constructor.name}", variants: "${variants.join(', ')}"`
+                    );
+
+                    return [variants, command];
                 })
         );
+
+        logger.debug(`Registered ${this.commands.size} command(s)`);
     }
 
     async register({ client }: HandlerRegisterProps): Promise<void> {
@@ -47,12 +55,16 @@ export class CommandHandler extends Handler {
     }
 
     async handle({ interaction }: HandlerHandleProps): Promise<void> {
+        logger.trace(
+            `Handling interaction of type "${InteractionType[interaction.type]}" from "@${interaction.user.tag}"`
+        );
+
         switch (interaction.type) {
             case InteractionType.ApplicationCommand:
                 await this.commands.get(this.getKeyFromCommandName(interaction.commandName))!.handle({ interaction });
                 break;
             default:
-                // TODO
+                logger.debug(`Unhandled interaction type: ${interaction.type}`);
                 break;
         }
     }

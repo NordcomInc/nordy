@@ -16,7 +16,7 @@
         "downlevelIteration": true,
         "strictNullChecks": true,
         "outDir": "./build",
-        "baseUrl": "./",
+        "baseUrl": "./src",
         "rootDir": "./src",
         "paths": {}
     },
