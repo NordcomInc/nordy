@@ -35,8 +35,9 @@ export default class Nordy extends Client {
             },
             closeTimeout: 20000
         });
-
         this.logger = logger;
+
+        this.logger.debug(`Initializing Nordy...`);
 
         this.on(
             Events.ClientReady,
@@ -47,7 +48,7 @@ export default class Nordy extends Client {
                 }
 
                 this.handlers.forEach((handler) => handler.register?.({ client }));
-                this.logger.debug(`Registered ${this.handlers.length} handler(s)`);
+                this.logger.debug(`Registered ${this.handlers.length} handler(s)!`);
 
                 this.user.setPresence({
                     status: 'online',
@@ -82,7 +83,7 @@ export default class Nordy extends Client {
         this.handlers = Object.values(Handlers).map(
             (Handler) => new Handler({ logger: this.logger.getSubLogger({ name: Handler.name }) })
         );
-        this.logger.trace(`Initialized ${this.handlers.length} handler(s)`);
+        this.logger.trace(`Initialized ${this.handlers.length} handler(s)!`);
     }
 
     public override async login(): Promise<string> {

@@ -27,7 +27,7 @@ export class CommandHandler extends Handler {
         super({ logger });
         this.logger = logger;
 
-        this.logger.trace(`Initializing CommandHander...`);
+        this.logger.debug(`Initializing CommandHander...`);
 
         this.commands = new Map(
             Object.values(Commands)
@@ -45,7 +45,7 @@ export class CommandHandler extends Handler {
                 })
         );
 
-        this.logger.debug(`Registered ${this.commands.size} command(s)`);
+        this.logger.debug(`Registered ${this.commands.size} command(s)!`);
     }
 
     async register({ client }: HandlerRegisterProps): Promise<void> {

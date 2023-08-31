@@ -11,7 +11,7 @@ export class DebugCommand extends Command {
         super({ logger });
         this.logger = logger;
 
-        this.logger.trace(`Initializing DebugCommand...`);
+        this.logger.debug(`Initializing DebugCommand...`);
     }
 
     override enabled() {

@@ -10,7 +10,7 @@ export class AboutCommand extends Command {
         super({ logger });
         this.logger = logger;
 
-        this.logger.trace(`Initializing AboutCommand...`);
+        this.logger.debug(`Initializing AboutCommand...`);
     }
 
     override enabled() {
