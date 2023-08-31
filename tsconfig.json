@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "lib": ["ESNext"],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,
@@ -11,21 +10,15 @@
         "moduleResolution": "Node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "removeComments": false,
+        "removeComments": true,
         "sourceMap": true,
         "incremental": true,
         "downlevelIteration": true,
         "strictNullChecks": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
         "outDir": "./build",
+        "baseUrl": "./",
         "rootDir": "./src",
-        "paths": {
-            "@/utils/*": ["./src/utils/*"]
-        }
+        "paths": {}
     },
     "exclude": ["node_modules"],
     "include": ["./src/**/*.ts"]

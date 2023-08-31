@@ -11,12 +11,12 @@
     },
     "scripts": {
         "prepare": "husky install",
-        "start": "node build/index.js",
+        "start": "node --experimental-loader=extensionless build/index.js",
         "dev": "nodemon --watch './src/**' --ext 'ts,js,json' --exec \"npm run build && npm run start\"",
-        "build": "tsc --project tsconfig.json",
+        "build": "tsc",
         "lint": "npm-run-all --parallel lint:*",
         "lint:prettier": "prettier src/**/*.* --check",
-        "lint:types": "tsc --project tsconfig.json -noEmit",
+        "lint:types": "tsc -noEmit",
         "test": "jest --coverage --passWithNoTests"
     },
     "author": {
@@ -43,6 +43,13 @@
         "url": "https://github.com/NordcomInc/nordy/issues"
     },
     "homepage": "https://github.com/NordcomInc/nordy/#readme",
+    "extensionless": {
+        "lookFor": [
+            "js",
+            "mjs",
+            "cjs"
+        ]
+    },
     "devDependencies": {
         "@nordcom/prettier": "0.1.1",
         "@types/jest": "29.5.4",
@@ -59,5 +66,10 @@
         "prettier": "3.0.3",
         "ts-jest": "29.1.1",
         "typescript": "5.2.2"
+    },
+    "dependencies": {
+        "discord.js": "14.13.0",
+        "dotenv": "16.3.1",
+        "extensionless": "1.4.5"
     }
 }
