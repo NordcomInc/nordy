@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+
+# codecov
+coverage/
+
+# production
+build/
+
+# misc
+.DS_Store
+.swc
+
+# debug
+npm-debug.log*
+
+# typescript
+*.tsbuildinfo

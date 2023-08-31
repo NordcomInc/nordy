@@ -1,0 +1,60 @@
+{
+    "name": "@nordcom/nordy",
+    "version": "0.1.0",
+    "description": "",
+    "prettier": "@nordcom/prettier",
+    "main": "./build/index.js",
+    "type": "module",
+    "engines": {
+        "npm": ">=8",
+        "node": ">=18"
+    },
+    "scripts": {
+        "prepare": "husky install",
+        "build": "tsc --project tsconfig.json",
+        "lint": "npm-run-all --parallel lint:*",
+        "lint:prettier": "prettier src/**/*.* --check",
+        "lint:types": "tsc --project tsconfig.json -noEmit",
+        "test": "jest --coverage --passWithNoTests"
+    },
+    "author": {
+        "name": "Nordcom Group Inc.",
+        "email": "opensource@nordcom.io",
+        "url": "https://nordcom.io/"
+    },
+    "contributors": [
+        {
+            "name": "Filiph Siitam Sandström",
+            "email": "filiph@nordcom.io",
+            "url": "https://github.com/filiphsps/"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NordcomInc/nordy.git"
+    },
+    "keywords": [
+        "discord"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/NordcomInc/nordy/issues"
+    },
+    "homepage": "https://github.com/NordcomInc/nordy/#readme",
+    "devDependencies": {
+        "@nordcom/prettier": "0.1.1",
+        "@types/jest": "29.5.4",
+        "@types/node": "20.5.7",
+        "eslint": "8.48.0",
+        "eslint-config-prettier": "9.0.0",
+        "eslint-plugin-github": "4.10.0",
+        "eslint-plugin-jest": "27.2.3",
+        "husky": "8.0.3",
+        "jest": "29.6.4",
+        "lint-staged": "14.0.1",
+        "npm-run-all": "4.1.5",
+        "prettier": "3.0.3",
+        "ts-jest": "29.1.1",
+        "typescript": "5.2.2"
+    }
+}

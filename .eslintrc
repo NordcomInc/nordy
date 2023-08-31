@@ -1,0 +1,21 @@
+{
+    "extends": ["prettier"],
+    "rules": {
+        "consistent-return": "error",
+        "no-mixed-operators": 0,
+        "no-useless-constructor": 0,
+        "standard/computed-property-even-spacing": 0,
+        "import/first": 0,
+        "no-unused-vars": "error",
+        "no-console": ["error", { "allow": ["warn", "error"] }],
+        "indent": "off",
+        "semi": ["error", "always"],
+        "brace-style": [
+            "error",
+            "1tbs",
+            {
+                "allowSingleLine": true
+            }
+        ]
+    }
+}

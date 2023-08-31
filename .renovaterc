@@ -1,0 +1,5 @@
+{
+    "extends": [
+        "github>NordcomInc/renovate-config"
+    ]
+}
