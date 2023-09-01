@@ -1,3 +1,3 @@
-import { CommandHandler } from './command-handler';
+import { CommandHandler } from '@/handlers/command-handler';
 
 export { CommandHandler };

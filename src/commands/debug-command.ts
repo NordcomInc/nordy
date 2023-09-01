@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { Command } from '@/commands/command';
 import type { CommandConstructorProps, CommandHandleCommandProps } from '@/commands/command';
-import { PRODUCTION } from '@/utils/config';
+import { config } from '@/utils/config';
 import type { Logger } from 'tslog';
 
 export class DebugCommand extends Command {
@@ -15,7 +15,7 @@ export class DebugCommand extends Command {
     }
 
     override enabled() {
-        return !PRODUCTION;
+        return !config.production;
     }
 
     override data() {

@@ -1,4 +1,12 @@
-export const HTTP_PORT = Number.parseInt(process.env.PORT || '3000');
-export const PRODUCTION = process.env.NODE_ENV === 'production';
-export const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
-export const LOG_LEVEL = process.env.LOG_LEVEL || 'info';
+import type { LogLevel } from './logger';
+
+const production = process.env.NODE_ENV === 'production';
+
+export const config = {
+    production: production,
+    log_level: (process.env.LOG_LEVEL || (production && 'info') || 'debug') as LogLevel,
+
+    api: {
+        port: Number.parseInt(process.env.PORT || (production && '80') || '3000')
+    }
+};

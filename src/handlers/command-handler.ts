@@ -1,4 +1,4 @@
-import * as Commands from '../commands/index';
+import * as Commands from '@/commands';
 
 import type { HandlerConstructorProps, HandlerHandleProps, HandlerRegisterProps } from './handler';
 

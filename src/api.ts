@@ -1,6 +1,6 @@
 import type { Express } from 'express';
 import type { Logger } from 'tslog';
-import type Nordy from './nordy';
+import type Nordy from '@/nordy';
 import { Server } from 'http';
 import express from 'express';
 

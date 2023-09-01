@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from 'discord.js';
-import { Command } from './command';
-import type { CommandConstructorProps, CommandHandleCommandProps } from './command';
+import { Command } from '@/commands/command';
+import type { CommandConstructorProps, CommandHandleCommandProps } from '@/commands/command';
 import type { Logger } from 'tslog';
 
 export class AboutCommand extends Command {

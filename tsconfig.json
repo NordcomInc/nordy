@@ -19,6 +19,8 @@
         "rootDir": "./src/",
         "baseUrl": ".",
         "paths": {
+            "@/nordy": ["src/nordy"],
+            "@/api": ["src/api"],
             "@/utils/*": ["src/utils/*"],
             "@/handlers/*": ["src/handlers/*"],
             "@/handlers": ["src/handlers/index"],

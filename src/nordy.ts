@@ -2,7 +2,7 @@ import * as Handlers from '@/handlers';
 
 import Discord, { ActivityType, Client, Events, GatewayIntentBits, Partials } from 'discord.js';
 
-import { DISCORD_TOKEN } from '@/utils/config';
+import { DISCORD_TOKEN } from '@/utils/secrets';
 import type { Interaction } from 'discord.js';
 import type { Handler } from '@/handlers/handler';
 import type { Logger } from 'tslog';
