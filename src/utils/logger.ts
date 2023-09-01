@@ -29,7 +29,7 @@ const prettyConfig = {
     prettyLogTemplate: '[{{hh}}:{{MM}}:{{ss}}:{{ms}} {{logLevelName}}]\t[{{name}}]: ',
     prettyErrorTemplate: '\n{{errorName}} {{errorMessage}}\nerror stack:\n{{errorStack}}',
     prettyErrorStackTemplate: '  • {{fileName}}\t{{method}}\n\t{{filePathWithLine}}',
-    prettyErrorParentNamesSeparator: ':',
+    prettyErrorParentNamesSeparator: '.',
     prettyErrorLoggerNameDelimiter: '\t',
     stylePrettyLogs: true,
     prettyLogTimeZone: 'UTC',

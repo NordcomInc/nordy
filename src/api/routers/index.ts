@@ -1,1 +1,2 @@
-export * from '@/api/routers/auth-router';
+export * from '@/api/routers/auth';
+export * from '@/api/routers/debug';

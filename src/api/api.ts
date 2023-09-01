@@ -6,6 +6,7 @@ import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { ApolloServerPluginInlineTrace } from '@apollo/server/plugin/inlineTrace';
 import type Bot from '@/bot/bot';
+import { CommonHeartbeatRouter } from './routes/heartbeat';
 import type { Express } from 'express';
 import type { Logger } from '@/utils/logger';
 import { Server } from 'http';
@@ -20,7 +21,7 @@ import { schema } from '@/api/schemas';
 export default class API {
     private readonly logger: Logger;
     private readonly bot: Bot;
-    private readonly app: Express;
+    private readonly express: Express;
     private readonly apollo: ApolloServer;
 
     private server?: Server;
@@ -31,7 +32,7 @@ export default class API {
         const middlewaresLogger = this.logger.getSubLogger({ name: 'Middlewares' });
 
         this.logger.debug(`Starting the API subsystem...`);
-        this.app = express()
+        this.express = express()
             .use(express.urlencoded({ extended: true }))
             .use(bodyParser.json())
             .use(
@@ -42,7 +43,7 @@ export default class API {
             .use(RequestUIDMiddleware(middlewaresLogger.getSubLogger({ name: RequestUIDMiddleware.name })))
             .use(RestStandardizeMiddleware(middlewaresLogger.getSubLogger({ name: RestStandardizeMiddleware.name })));
 
-        this.server = http.createServer(this.app);
+        this.server = http.createServer(this.express);
 
         this.logger.debug(`Initializing apollo...`);
         this.apollo = new ApolloServer({
@@ -53,10 +54,9 @@ export default class API {
 
     public async initializeRoutes() {
         this.logger.trace(`Initializing routes...`);
-        this.app
+        this.express
             .use(cors())
-
-            .use('/', (req, res, next) => {
+            .get('/', (req, res, next) => {
                 if (req.path !== '/') return next();
 
                 return res.status(200).json({
@@ -66,32 +66,41 @@ export default class API {
                     graphql: `${req.protocol}://${req.get('host')}${config.api.graphql.route}`
                 });
             })
-            .use('/heartbeat', (req, res) => res.status(200).json({}));
+            .get('/heartbeat', (req, res) => res.status(200).json({}))
+            .use(await CommonHeartbeatRouter({ logger: this.logger }));
 
         this.logger.debug(`Configuring graphql routes...`);
         await this.apollo.start();
-        this.app.use(config.api.graphql.route, graphql(this.apollo));
+        this.express.use(config.api.graphql.route, graphql(this.apollo));
 
         this.logger.debug(`Configuring routers...`);
         const routersLogger = this.logger.getSubLogger({ name: 'Routers' });
         const routers = await Promise.all(
             Object.values(Routers).map((router) =>
-                router({ logger: routersLogger.getSubLogger({ name: router.name }) })
+                router({ logger: routersLogger.getSubLogger({ name: router.name }), api: this })
             )
         );
-        routers.forEach((router) => this.app.use(router));
+        routers.forEach((router) => this.express.use(router));
 
         this.logger.debug(`Configuring error routes...`);
-        this.app.use('*', (req, res) => res.status(404).json({ error: 'Not Found' }));
+        this.express.use('*', (req, res) => res.status(404).json({ error: 'Not Found' }));
     }
 
     public async listen() {
-        this.server = this.app.listen(config.api.port);
+        this.server = this.express.listen(config.api.port);
         this.logger.info(`API started on port ${config.api.port}!`);
     }
 
     public async destroy() {
         await this.apollo.stop();
         this.server?.close();
+    }
+
+    public getApp() {
+        return this.express;
+    }
+
+    public getBot() {
+        return this.bot;
     }
 }

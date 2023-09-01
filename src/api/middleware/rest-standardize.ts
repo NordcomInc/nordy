@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 
-import { Logger } from '@/utils/logger';
+import type { Logger } from '@/utils/logger';
 
 export const RestStandardizeMiddleware = (logger: Logger) => (req: Request, res: Response, next: NextFunction) => {
     const builtin = res.json;

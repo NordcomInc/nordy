@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 
-import { Logger } from '@/utils/logger';
+import type { Logger } from '@/utils/logger';
 import { v1 as uuid } from 'uuid';
 
 declare global {
