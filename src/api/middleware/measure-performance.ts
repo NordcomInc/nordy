@@ -11,12 +11,16 @@ export const MeasurePerformanceMiddleware = (logger: Logger) => (req: Request, r
             res.json = builtin;
             return builtin.call(res, {
                 ...(data || {}),
-                elapsed: performance.now() - start
+
+                metrics: {
+                    ...((req.id && { request: req.id }) || {}),
+                    elapsed: performance.now() - start
+                }
             });
         }) as any;
     } catch (error) {
-        next(error);
+        return next(error);
     }
 
-    next();
+    return next();
 };

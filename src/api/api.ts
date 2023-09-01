@@ -1,4 +1,4 @@
-import { MeasurePerformanceMiddleware, RestStandardizeMiddleware } from '@/api/middleware';
+import { MeasurePerformanceMiddleware, RequestUIDMiddleware, RestStandardizeMiddleware } from '@/api/middleware';
 
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
@@ -33,6 +33,7 @@ export default class API {
             .use(express.urlencoded({ extended: true }))
             .use(bodyParser.json())
             .use(MeasurePerformanceMiddleware(middlewareLogger))
+            .use(RequestUIDMiddleware(middlewareLogger))
             .use(RestStandardizeMiddleware(middlewareLogger));
 
         this.server = http.createServer(this.app);

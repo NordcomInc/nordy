@@ -27,8 +27,8 @@ export const RestStandardizeMiddleware = (logger: Logger) => (req: Request, res:
             })();
         }) as any;
     } catch (error) {
-        next(error);
+        return next(error);
     }
 
-    next();
+    return next();
 };
