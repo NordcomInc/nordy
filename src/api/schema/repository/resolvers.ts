@@ -1,4 +1,6 @@
-const resolvers = {
+import type { Resolvers } from '@/api/___graphql';
+
+const resolvers: Resolvers = {
     Query: {
         async repositories() {
             throw new Error('Not implemented');

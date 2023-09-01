@@ -8,8 +8,8 @@ coverage/
 build/
 .env
 
-# ts-only
-src/**/*.js
+# codegen
+___*.ts
 
 # misc
 .DS_Store
