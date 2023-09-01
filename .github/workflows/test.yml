@@ -24,6 +24,9 @@ jobs:
             - name: 📦 Download dependencies
               run: npm ci
 
+            - name: ⚙️ Codegen
+              run: npm run generate
+
             - name: 📋 Lint
               run: npm run lint
 
