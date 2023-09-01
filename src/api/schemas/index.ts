@@ -1,5 +1,5 @@
-import RepositoryResolvers from '@/api/schema/repository/resolvers';
-import RepositorySchema from '@/api/schema/repository/schema';
+import RepositoryResolvers from '@/api/schemas/repository/resolvers';
+import RepositorySchema from '@/api/schemas/repository/schema';
 import { buildSubgraphSchema } from '@apollo/subgraph';
 
 export const schema = buildSubgraphSchema([

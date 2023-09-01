@@ -13,7 +13,7 @@ import cors from 'cors';
 import express from 'express';
 import { expressMiddleware as graphql } from '@apollo/server/express4';
 import http from 'http';
-import { schema } from '@/api/schema';
+import { schema } from '@/api/schemas';
 
 export default class API {
     private readonly logger: Logger;
