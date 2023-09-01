@@ -8,7 +8,7 @@ export default class Database {
     constructor({ logger }: { logger: Logger }) {
         this.logger = logger;
 
-        this.logger.debug(`Initializing Database...`);
+        this.logger.debug(`Starting the Database subsystem...`);
         mongoose.set('strictQuery', true);
     }
 

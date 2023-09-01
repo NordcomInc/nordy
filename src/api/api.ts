@@ -1,3 +1,5 @@
+import * as Routers from '@/api/routers';
+
 import { MeasurePerformanceMiddleware, RequestUIDMiddleware, RestStandardizeMiddleware } from '@/api/middleware';
 
 import { ApolloServer } from '@apollo/server';
@@ -26,15 +28,19 @@ export default class API {
     constructor({ logger, bot }: { logger: Logger; bot: Bot }) {
         this.bot = bot;
         this.logger = logger;
-        const middlewareLogger = this.logger.getSubLogger({ name: 'middleware' });
+        const middlewaresLogger = this.logger.getSubLogger({ name: 'Middlewares' });
 
-        this.logger.debug(`Initializing API...`);
+        this.logger.debug(`Starting the API subsystem...`);
         this.app = express()
             .use(express.urlencoded({ extended: true }))
             .use(bodyParser.json())
-            .use(MeasurePerformanceMiddleware(middlewareLogger))
-            .use(RequestUIDMiddleware(middlewareLogger))
-            .use(RestStandardizeMiddleware(middlewareLogger));
+            .use(
+                MeasurePerformanceMiddleware(
+                    middlewaresLogger.getSubLogger({ name: MeasurePerformanceMiddleware.name })
+                )
+            )
+            .use(RequestUIDMiddleware(middlewaresLogger.getSubLogger({ name: RequestUIDMiddleware.name })))
+            .use(RestStandardizeMiddleware(middlewaresLogger.getSubLogger({ name: RestStandardizeMiddleware.name })));
 
         this.server = http.createServer(this.app);
 
@@ -62,11 +68,20 @@ export default class API {
             })
             .use('/heartbeat', (req, res) => res.status(200).json({}));
 
-        this.logger.trace(`Configuring graphql routes...`);
+        this.logger.debug(`Configuring graphql routes...`);
         await this.apollo.start();
         this.app.use(config.api.graphql.route, graphql(this.apollo));
 
-        this.logger.trace(`Configuring error routes...`);
+        this.logger.debug(`Configuring routers...`);
+        const routersLogger = this.logger.getSubLogger({ name: 'Routers' });
+        const routers = await Promise.all(
+            Object.values(Routers).map((router) =>
+                router({ logger: routersLogger.getSubLogger({ name: router.name }) })
+            )
+        );
+        routers.forEach((router) => this.app.use(router));
+
+        this.logger.debug(`Configuring error routes...`);
         this.app.use('*', (req, res) => res.status(404).json({ error: 'Not Found' }));
     }
 

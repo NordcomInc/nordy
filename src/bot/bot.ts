@@ -37,7 +37,7 @@ export default class Bot extends Client {
         });
         this.logger = logger;
 
-        this.logger.debug(`Initializing Bot...`);
+        this.logger.debug(`Starting the Bot subsystem...`);
 
         this.on(
             Events.ClientReady,
