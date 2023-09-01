@@ -3,9 +3,9 @@ import * as Handlers from '@/handlers';
 import Discord, { ActivityType, Client, Events, GatewayIntentBits, Partials } from 'discord.js';
 
 import { DISCORD_TOKEN } from '@/utils/secrets';
-import type { Interaction } from 'discord.js';
 import type { Handler } from '@/handlers/handler';
-import type { Logger } from 'tslog';
+import type { Interaction } from 'discord.js';
+import type { Logger } from '@/utils/logger';
 
 const client = new Discord.Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
@@ -14,11 +14,11 @@ const client = new Discord.Client({
 
 client.login(DISCORD_TOKEN);
 
-export default class Nordy extends Client {
-    private readonly logger: Logger<any>;
+export default class Bot extends Client {
+    private readonly logger: Logger;
     private handlers: Handler[] = [];
 
-    constructor({ logger }: { logger: Logger<any> }) {
+    constructor({ logger }: { logger: Logger }) {
         super({
             intents: [
                 GatewayIntentBits.Guilds,
@@ -37,7 +37,7 @@ export default class Nordy extends Client {
         });
         this.logger = logger;
 
-        this.logger.debug(`Initializing Nordy...`);
+        this.logger.debug(`Initializing Bot...`);
 
         this.on(
             Events.ClientReady,
@@ -60,7 +60,7 @@ export default class Nordy extends Client {
                     ]
                 });
 
-                this.logger.info(`Authenticated as "@${this.user.tag}" and ready!`);
+                this.logger.info(`Authenticated as "@${this.user.tag}"!`);
             }).bind(this)
         );
 
@@ -86,7 +86,7 @@ export default class Nordy extends Client {
         this.logger.trace(`Initialized ${this.handlers.length} handler(s)!`);
     }
 
-    public override async login(): Promise<string> {
+    public async login(): Promise<string> {
         super.login(DISCORD_TOKEN);
         return ''; // We don't want to return the token.
     }

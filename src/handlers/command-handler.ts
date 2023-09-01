@@ -5,10 +5,10 @@ import type { HandlerConstructorProps, HandlerHandleProps, HandlerRegisterProps 
 import { Command } from '@/commands/command';
 import { Handler } from '@/handlers/handler';
 import { InteractionType } from 'discord.js';
-import type { Logger } from 'tslog';
+import type { Logger } from '@/utils/logger';
 
 export class CommandHandler extends Handler {
-    private readonly logger: Logger<any>;
+    private readonly logger: Logger;
     private readonly commands: Map<string[], Command>;
 
     private getKeyFromCommandName(commandName: string): string[] {

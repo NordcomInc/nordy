@@ -2,10 +2,10 @@ import { SlashCommandBuilder } from 'discord.js';
 import { Command } from '@/commands/command';
 import type { CommandConstructorProps, CommandHandleCommandProps } from '@/commands/command';
 import { config } from '@/utils/config';
-import type { Logger } from 'tslog';
+import type { Logger } from '@/utils/logger';
 
 export class DebugCommand extends Command {
-    private readonly logger: Logger<any>;
+    private readonly logger: Logger;
 
     constructor({ logger }: CommandConstructorProps) {
         super({ logger });

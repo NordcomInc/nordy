@@ -1,8 +1,8 @@
 import type { CommandInteraction, SlashCommandBuilder } from 'discord.js';
 
-import type { Logger } from 'tslog';
+import type { Logger } from '@/utils/logger';
 
-export type CommandConstructorProps = { logger: Logger<any> };
+export type CommandConstructorProps = { logger: Logger };
 export type CommandHandleCommandProps = { interaction: CommandInteraction };
 
 export abstract class Command {

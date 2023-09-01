@@ -1,8 +1,8 @@
 import type { Client, Interaction } from 'discord.js';
 
-import type { Logger } from 'tslog';
+import type { Logger } from '@/utils/logger';
 
-export type HandlerConstructorProps = { logger: Logger<any> };
+export type HandlerConstructorProps = { logger: Logger };
 export type HandlerRegisterProps = { client: Client };
 export type HandlerHandleProps = { interaction: Interaction };
 

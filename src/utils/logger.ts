@@ -1,5 +1,29 @@
-import { Logger } from 'tslog';
+import { Logger as Log } from 'tslog';
 import { config } from '@/utils/config';
+
+export type Logger = Log<any>;
+
+export type LogLevel = 'silly' | 'tracer' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+export const LogLevelToNumeric = (level: LogLevel): 0 | 1 | 2 | 3 | 4 | 5 | 6 => {
+    switch (level) {
+        case 'silly':
+            return 0;
+        case 'tracer':
+            return 1;
+        case 'debug':
+            return 2;
+        case 'warn':
+            return 4;
+        case 'error':
+            return 5;
+        case 'fatal':
+            return 6;
+
+        case 'info':
+        default:
+            return 3;
+    }
+};
 
 const prettyConfig = {
     prettyLogTemplate: '[{{hh}}:{{MM}}:{{ss}}:{{ms}} {{logLevelName}}]\t[{{name}}]: ',
@@ -30,29 +54,8 @@ const prettyConfig = {
     }
 };
 
-export type LogLevel = 'silly' | 'tracer' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
-export const LogLevelToNumeric = (level: LogLevel) => {
-    switch (level) {
-        case 'silly':
-            return 0;
-        case 'tracer':
-            return 1;
-        case 'debug':
-            return 2;
-        case 'warn':
-            return 4;
-        case 'error':
-            return 5;
-        case 'fatal':
-            return 6;
-
-        case 'info':
-        default:
-            return 3;
-    }
-};
-
-export default new Logger({
+export default new Log({
+    name: 'Nordy',
     type: (config.production && 'json') || 'pretty',
     minLevel: LogLevelToNumeric(config.log_level),
 

@@ -7,6 +7,9 @@ export const config = {
     log_level: (process.env.LOG_LEVEL || (production && 'info') || 'debug') as LogLevel,
 
     api: {
+        graphql: {
+            route: '/graphql'
+        },
         port: Number.parseInt(process.env.PORT || (production && '80') || '3000')
     }
 };

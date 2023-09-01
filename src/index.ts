@@ -1,25 +1,32 @@
 import 'dotenv/config';
 
-import API from '@/api';
+import API from '@/api/api';
+import Bot from '@/bot/bot';
+import Database from '@/database/database';
 import Logger from '@/utils/logger';
-import Nordy from '@/nordy';
 import { config } from '@/utils/config';
+import { onShutdown } from '@/utils/shutdown';
 
-const nordy = new Nordy({ logger: Logger.getSubLogger({ name: Nordy.name }) });
-await nordy.initializeHandlers();
+Logger.info('Starting Nordy...');
+const database = new Database({ logger: Logger.getSubLogger({ name: Database.name }) });
+await database.connect();
 
-const dashboard = new API({ logger: Logger.getSubLogger({ name: API.name }), nordy });
+const bot = new Bot({ logger: Logger.getSubLogger({ name: Bot.name }) });
+await bot.initializeHandlers();
+
+const dashboard = new API({ logger: Logger.getSubLogger({ name: API.name }), bot });
 await dashboard.initializeRoutes();
-await dashboard.start({ port: config.api.port });
+await dashboard.listen();
 
-await nordy.login();
+onShutdown(async () => {
+    Logger.info('Shutting down...');
 
-const exit = async () => {
     await dashboard.destroy();
-    await nordy.destroy();
-    process.exit();
-};
+    await bot.destroy();
+    await database.destroy();
 
-process.on('SIGINT', exit);
-process.on('SIGQUIT', exit);
-process.on('SIGTERM', exit);
+    // FIXME: Respect original exit code.
+    process.exit(0);
+});
+
+await bot.login();
