@@ -21,6 +21,7 @@
         "paths": {
             "@/nordy": ["src/nordy"],
             "@/api": ["src/api"],
+            "@/api/*": ["src/api/*"],
             "@/utils/*": ["src/utils/*"],
             "@/handlers/*": ["src/handlers/*"],
             "@/handlers": ["src/handlers/index"],
