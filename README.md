@@ -3,8 +3,8 @@
 A Discord bot that synchronizes markdown content and configurations from a GitHub repository to a Discord server. Make organizing a community brilliantly easy by leveraging all the benefits of source-control.
 
 [![Build, lint and test](https://github.com/NordcomInc/nordy/actions/workflows/test.yml/badge.svg)](https://github.com/NordcomInc/nordy/actions/workflows/test.yml)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/t/NordcomGroupInc/nordy)](https://github.com/NordcomInc/nordy/graphs/commit-activity)
-[![GitHub contributors](https://img.shields.io/github/contributors/NordcomGroupInc/nordy)](https://github.com/NordcomInc/nordy/graphs/contributors)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/t/NordcomInc/nordy)](https://github.com/NordcomInc/nordy/graphs/commit-activity)
+[![GitHub contributors](https://img.shields.io/github/contributors/NordcomInc/nordy)](https://github.com/NordcomInc/nordy/graphs/contributors)
 [![License](https://img.shields.io/github/license/NordcomInc/nordy.svg)](https://github.com/NordcomInc/nordy/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/532606942019846176.svg?logo=discord&logoColor=white&logoWidth=20&labelColor=7289DA&label=Discord&color=17cf48)](https://discord.gg/WgYVtCbR6J)
 
