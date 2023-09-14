@@ -7,6 +7,7 @@ A Discord bot that synchronizes markdown content and configurations from a GitHu
 [![GitHub contributors](https://img.shields.io/github/contributors/NordcomInc/nordy)](https://github.com/NordcomInc/nordy/graphs/contributors)
 [![License](https://img.shields.io/github/license/NordcomInc/nordy.svg)](https://github.com/NordcomInc/nordy/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/532606942019846176.svg?logo=discord&logoColor=white&logoWidth=20&labelColor=7289DA&label=Discord&color=17cf48)](https://discord.gg/WgYVtCbR6J)
+[![WakaTime](https://wakatime.com/badge/github/NordcomInc/nordy.svg)](https://wakatime.com/badge/github/NordcomInc/nordy)
 
 ## 🔗 links
 
