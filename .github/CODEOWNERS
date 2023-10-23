@@ -1,1 +1,5 @@
-* filiph@nordcom.io
+.github**                   filiph@nordcom.io
+/src/api/**                 filiph@nordcom.io
+/src/utils/logger.ts        filiph@nordcom.io
+/src/utils/secrets.ts       filiph@nordcom.io
+/src/utils/shutdown.ts      filiph@nordcom.io

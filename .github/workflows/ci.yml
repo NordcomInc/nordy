@@ -1,17 +1,31 @@
-name: Build, lint and test
+name: 🧠 CI
 
-on: [push, pull_request_target]
+on:
+    pull_request:
+        paths-ignore:
+            - '**.md'
+    push:
+        branches:
+            - master
+        paths-ignore:
+            - '**.md'
 
 jobs:
     test:
         name: 🔬 Test
+        timeout-minutes: 10
         runs-on: ubuntu-latest
+        env:
+            CI: true
         steps:
             - name: 🕶️ Checkout repository
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+              uses: actions/checkout@v4
 
             - name: 🏎️ Setup nodejs
               uses: actions/setup-node@v3
+              with:
+                  node-version: 'lts/*'
+                  cache: 'npm'
 
             - name: 💾 Cache node modules
               uses: actions/cache@v3

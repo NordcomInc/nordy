@@ -49,7 +49,7 @@
     "bugs": {
         "url": "https://github.com/NordcomInc/nordy/issues"
     },
-    "homepage": "https://github.com/NordcomInc/nordy/#readme",
+    "homepage": "https://nordy.nordcom.io/",
     "extensionless": {
         "lookFor": [
             "js",

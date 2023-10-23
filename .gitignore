@@ -1,11 +1,11 @@
 # dependencies
-node_modules/
+/node_modules/
 
 # codecov
-coverage/
+/coverage/
 
 # production
-build/
+/build/
 .env
 
 # codegen
@@ -13,10 +13,10 @@ ___*.ts
 
 # misc
 .DS_Store
-.swc
+/.swc
 
 # debug
-npm-debug.log*
+/npm-debug.log*
 
 # typescript
-*.tsbuildinfo
+/*.tsbuildinfo
