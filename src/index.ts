@@ -4,7 +4,6 @@ import API from '@/api/api';
 import Bot from '@/bot/bot';
 import Database from '@/database/database';
 import Logger from '@/utils/logger';
-import { config } from '@/utils/config';
 import { onShutdown } from '@/utils/shutdown';
 
 Logger.info('Starting Nordy...');
