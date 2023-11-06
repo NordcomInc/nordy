@@ -14,7 +14,7 @@ A Discord bot that synchronizes markdown content and configurations from a GitHu
 -   [:speech_balloon: Discord Server](https://discord.gg/WgYVtCbR6J)
 -   [:open_file_folder: Documentation](https://docs.nordy.nordcom.io/)
 
-## :rocket: getting Started
+## :rocket: getting started
 
 > Unless you're looking to contribute to or self-host nordy you're in the wrong place. Keep an eye out on the Discord App Directory when we're ready to roll out the initial version.
 
