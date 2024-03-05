@@ -83,7 +83,7 @@
         "typescript": "5.3.3"
     },
     "dependencies": {
-        "@apollo/server": "4.10.0",
+        "@apollo/server": "4.10.1",
         "@apollo/subgraph": "2.7.1",
         "body-parser": "1.20.2",
         "cors": "2.8.5",
