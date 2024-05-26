@@ -90,7 +90,7 @@
         "discord.js": "14.14.1",
         "dotenv": "16.4.5",
         "express": "4.19.2",
-        "extensionless": "1.9.6",
+        "extensionless": "1.9.9",
         "graphql": "16.8.1",
         "graphql-http": "1.22.0",
         "graphql-tag": "2.12.6",
