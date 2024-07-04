@@ -91,7 +91,7 @@
         "dotenv": "16.4.5",
         "express": "4.19.2",
         "extensionless": "1.9.9",
-        "graphql": "16.8.1",
+        "graphql": "16.9.0",
         "graphql-http": "1.22.0",
         "graphql-tag": "2.12.6",
         "mongoose": "8.3.0",
