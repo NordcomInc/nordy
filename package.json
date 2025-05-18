@@ -79,7 +79,7 @@
         "ts-jest": "29.2.3",
         "ts-node": "10.9.2",
         "tsc-alias": "1.8.16",
-        "tsc-watch": "6.2.1",
+        "tsc-watch": "6.3.1",
         "typescript": "5.4.2"
     },
     "dependencies": {
