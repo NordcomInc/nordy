@@ -95,7 +95,7 @@
         "graphql-http": "1.22.0",
         "graphql-tag": "2.12.6",
         "mongoose": "8.9.5",
-        "tslog": "4.9.3",
+        "tslog": "4.10.0",
         "uuid": "13.0.0"
     }
 }
