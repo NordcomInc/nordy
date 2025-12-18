@@ -85,7 +85,7 @@
     "dependencies": {
         "@apollo/server": "5.0.0",
         "@apollo/subgraph": "2.7.2",
-        "body-parser": "2.2.0",
+        "body-parser": "2.2.1",
         "cors": "2.8.5",
         "discord.js": "14.14.1",
         "dotenv": "16.6.1",
