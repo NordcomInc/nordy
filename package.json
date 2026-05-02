@@ -58,9 +58,9 @@
         ]
     },
     "devDependencies": {
-        "@graphql-codegen/cli": "7.0.0",
-        "@graphql-codegen/typescript": "6.0.0",
-        "@graphql-codegen/typescript-resolvers": "6.0.0",
+        "@graphql-codegen/cli": "6.3.1",
+        "@graphql-codegen/typescript": "5.0.10",
+        "@graphql-codegen/typescript-resolvers": "5.1.8",
         "@nordcom/prettier": "0.1.1",
         "@types/body-parser": "1.19.5",
         "@types/cors": "2.8.19",
