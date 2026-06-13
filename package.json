@@ -75,7 +75,7 @@
         "jest": "30.4.2",
         "lint-staged": "17.0.7",
         "npm-run-all2": "9.0.1",
-        "prettier": "3.8.3",
+        "prettier": "3.8.4",
         "ts-jest": "29.2.3",
         "ts-node": "10.9.2",
         "tsc-alias": "1.8.17",
