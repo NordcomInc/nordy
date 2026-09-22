@@ -88,7 +88,7 @@
         "body-parser": "2.3.0",
         "cors": "2.8.6",
         "discord.js": "14.14.1",
-        "dotenv": "18.0.1",
+        "dotenv": "18.0.2",
         "express": "4.22.3",
         "extensionless": "2.0.6",
         "graphql": "17.0.2",
