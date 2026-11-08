@@ -83,8 +83,8 @@
         "typescript": "7.0.2"
     },
     "dependencies": {
-        "@apollo/server": "5.5.0",
-        "@apollo/subgraph": "2.7.2",
+        "@apollo/server": "5.5.1",
+        "@apollo/subgraph": "2.15.1",
         "body-parser": "2.4.0",
         "cors": "2.8.6",
         "discord.js": "14.14.1",
@@ -93,7 +93,7 @@
         "extensionless": "2.0.6",
         "graphql": "17.0.2",
         "graphql-http": "1.22.0",
-        "graphql-tag": "2.12.6",
+        "graphql-tag": "2.12.7",
         "mongoose": "9.11.3",
         "tslog": "5.4.0",
         "uuid": "14.0.3"
