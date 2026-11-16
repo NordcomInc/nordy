@@ -73,7 +73,7 @@
         "eslint-plugin-jest": "29.17.0",
         "husky": "9.1.7",
         "jest": "30.5.2",
-        "lint-staged": "17.6.0",
+        "lint-staged": "17.6.1",
         "npm-run-all2": "9.0.4",
         "prettier": "3.10.1",
         "ts-jest": "29.4.15",
